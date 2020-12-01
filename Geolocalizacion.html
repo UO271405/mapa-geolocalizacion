@@ -4,17 +4,13 @@
     <head>
         <meta charset="UTF-8">
         <title>Geolocalizacion</title>
+        <meta name="viewport" content="initial-scale=1.0"/>
         <script src="Geolocalizacion.js"></script>
         <link rel="stylesheet" href="Geolocalizacion.css"/>
     </head>
     <body>
-        <h1>Geolocalización</h1>
-        <div class="container">
-            <br>
-            <section id="ubicacion">
-                <h2>Se visualizará el mapa</h2>
-                <input type="button" id="boton" value="Obtener mapa estático" onClick = "posicion.getMapaEstaticoGoogle('ubicacion');"/>
-            </section>
-        </div>
+        <div id="mapa"></div>
+        <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC6j4mF6blrc4kZ54S6vYZ2_FpMY9VzyRU&callback=mapaDinamicoGoogle.initMap">
+        </script>
     </body>
 </html>
