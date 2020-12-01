@@ -7,10 +7,10 @@ class GeoLocalizacion{
         this.longitud = position.coords.longitude; 
         this.latitud = position.coords.latitude;  
         this.precision = position.coords.accuracy;
-        this.altitud          = posicion.coords.altitude;
+        /*this.altitud          = posicion.coords.altitude;
         this.precisionAltitud = posicion.coords.altitudeAccuracy;
         this.rumbo            = posicion.coords.heading;
-        this.velocidad        = posicion.coords.speed;
+        this.velocidad        = posicion.coords.speed;*/
     }
 
     show(){
@@ -27,7 +27,7 @@ class GeoLocalizacion{
         let liPrecision = document.createElement('li');
         liPrecision.append("Precisión de latitud y longitud: " + this.precision + " metros");
         coordenadas.appendChild(liPrecision);
-        let liAltitud = document.createElement('li');
+        /*let liAltitud = document.createElement('li');
         liAltitud.append("Altitud: " + this.altitud + " metros");
         coordenadas.appendChild(liAltitud);
         let liPrecisionAltitud = document.createElement('li');
@@ -38,7 +38,7 @@ class GeoLocalizacion{
         coordenadas.appendChild(liRumbo);
         let liVelocidad = document.createElement('li');
         liVelocidad.append("Velocidad: " + this.velocidad + " metros/segundo");
-        coordenadas.appendChild(liVelocidad);
+        coordenadas.appendChild(liVelocidad);*/
     }
 }
 var posicion = new GeoLocalizacion();
