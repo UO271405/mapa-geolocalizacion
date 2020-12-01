@@ -1,41 +1,44 @@
-var miMapa = new Object();
+"use strict";
+class GeoLocalizacion{
+    constructor (){
+        navigator.geolocation.getCurrentPosition(this.getPosition.bind(this));
+    }
+    getPosition(position){
+        this.longitud = position.coords.longitude; 
+        this.latitud = position.coords.latitude;  
+        this.precision = position.coords.accuracy;
+        /*this.altitud          = posicion.coords.altitude;
+        this.precisionAltitud = posicion.coords.altitudeAccuracy;
+        this.rumbo            = posicion.coords.heading;
+        this.velocidad        = posicion.coords.speed;*/
+    }
 
-function initMap(){  
-    var centro = {lat: 43.3672702, lng: -5.8502461};
-    var mapaGeoposicionado = new google.maps.Map(document.getElementById('mapa'),{
-        zoom: 8,
-        center:centro,
-        mapTypeId: google.maps.MapTypeId.ROADMAP
-    });
-    var trafficLayer = new google.maps.TrafficLayer();
-        trafficLayer.setMap(mapaGeoposicionado);
-    
-    infoWindow = new google.maps.InfoWindow;
-    if (navigator.geolocation) {
-          navigator.geolocation.getCurrentPosition(function(position) {
-            var pos = {
-              lat: position.coords.latitude,
-              lng: position.coords.longitude
-            };
+    show(){
+        var coordenadas = document.querySelector('.coordenadas');
+        coordenadas.innerHTML = '';
 
-            infoWindow.setPosition(pos);
-            infoWindow.setContent('Localización encontrada');
-            infoWindow.open(mapaGeoposicionado);
-            mapaGeoposicionado.setCenter(pos);
-          }, function() {
-            handleLocationError(true, infoWindow, mapaGeoposicionado.getCenter());
-          });
-        } else {
-          handleLocationError(false, infoWindow, mapaGeoposicionado.getCenter());
-        }
-      }
-
-      function handleLocationError(browserHasGeolocation, infoWindow, pos) {
-        infoWindow.setPosition(pos);
-        infoWindow.setContent(browserHasGeolocation ?
-                              'Error: Ha fallado la geolocalización' :
-                              'Error: Su navegador no soporta geolocalización');
-        infoWindow.open(mapaGeoposicionado);
-      }
-
-miMapa.initMap = initMap;
+        //Mostrar coordenadas
+        let liLongitud = document.createElement('li');
+        liLongitud.append("Longitud: " + this.longitud + " grados");
+        coordenadas.appendChild(liLongitud);
+        let liLatitud = document.createElement('li');
+        liLatitud.append("Latitud: " + this.latitud + " grados");
+        coordenadas.appendChild(liLatitud);
+        let liPrecision = document.createElement('li');
+        liPrecision.append("Precisión de latitud y longitud: " + this.precision + " metros");
+        coordenadas.appendChild(liPrecision);
+        /*let liAltitud = document.createElement('li');
+        liAltitud.append("Altitud: " + this.altitud + " metros");
+        coordenadas.appendChild(liAltitud);
+        let liPrecisionAltitud = document.createElement('li');
+        liPrecisionAltitud.append("Precisión altitud: " + this.precisionAltitud + " metros");
+        coordenadas.appendChild(liPrecisionAltitud);
+        let liRumbo = document.createElement('li');
+        liRumbo.append("Rumbo: " + this.rumbo + " grados");
+        coordenadas.appendChild(liRumbo);
+        let liVelocidad = document.createElement('li');
+        liVelocidad.append("Velocidad: " + this.velocidad + " metros/segundo");
+        coordenadas.appendChild(liVelocidad);*/
+    }
+}
+var posicion = new GeoLocalizacion();
