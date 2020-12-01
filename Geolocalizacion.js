@@ -103,7 +103,7 @@ class GeoLocalizacion{
         var sensor = "&sensor=false"; 
         
         this.imagenMapa = url + centro + zoom + size + marcador + sensor + apiKey;
-        ubicacion.innerHTML = "<img src='"+this.imagenMapa+"'/>";
+        ubicacion.innerHTML = "<img src='" + this.imagenMapa + "' alt='Mapa'></img>";
     }
 }
 var posicion = new GeoLocalizacion();
