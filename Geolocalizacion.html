@@ -10,12 +10,11 @@
     <body>
         <h1>Geolocalización</h1>
         <div class="container">
-            <strong>Déjenos obtener sus coordenadas.</strong>
             <br>
-            <button id = "obtener" onclick = "posicion.show();">Obtener</button>
-            <ul class="coordenadas">
-                <li>Coordenadas</li>
-            </ul>
+            <section id="ubicacion">
+                <h2>Se visualizará el mapa</h2>
+                <input type="button" id="boton" value="Obtener mapa estático" onClick = "posicion.getMapaEstaticoGoogle('ubicacion');"/>
+            </section>
         </div>
     </body>
 </html>
