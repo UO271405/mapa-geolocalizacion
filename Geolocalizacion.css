@@ -11,6 +11,13 @@ h1{
     color: darkslategray;
 }
 
+/*especificidad -> 100*/
+#mapa {
+    margin: auto;
+    height: 40em;
+    width: 100%;
+}
+
 /*especificidad -> 10*/
 .container {
     padding: 1em;

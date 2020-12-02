@@ -1,20 +1,31 @@
 "use strict";
+
+var mapaDinamicoGoogle = new Object();
+function initMap(){
+    var oviedo = {lat: 43.3672702, lng: -5.8502461};
+    var mapaOviedo = new google.maps.Map(document.getElementById('mapa'),{zoom: 8,center:oviedo});
+    var marcador = new google.maps.Marker({position:oviedo,map:mapaOviedo});
+}
+mapaDinamicoGoogle.initMap = initMap;
+
+
+"use strict"
 class GeoLocalizacion{
     constructor (){
         navigator.geolocation.getCurrentPosition(this.getPosition.bind(this), this.verErrores.bind(this));
     }
     getPosition(position){
         this.mensaje = "La petición de geolocalización se ha realizado con éxito.";
-        this.longitud = position.coords.longitude; 
-        this.latitud = position.coords.latitude;  
-        this.precision = position.coords.accuracy;
-		
-		//Si descomento lo siguiente no me funciona (puede ser mi ordenador)
-		
-        /*this.altitud          = posicion.coords.altitude;
+        this.longitud = posicion.coords.longitude;
+        this.latitud = posicion.coords.latitude;
+        this.precision = posicion.coords.accuracy;
+
+        //Si descomento lo siguiente no funciona (puede ser mi ordenador)
+
+        /*this.altitud = posicion.coords.altitude;
         this.precisionAltitud = posicion.coords.altitudeAccuracy;
-        this.rumbo            = posicion.coords.heading;
-        this.velocidad        = posicion.coords.speed;*/
+        this.rumbo = posicion.coords.heading;
+        this.velocidad = posicion.coords.speed;*/
     }
 
     verErrores(error){
@@ -48,9 +59,9 @@ class GeoLocalizacion{
         let liPrecision = document.createElement('li');
         liPrecision.append("Precisión de latitud y longitud: " + this.precision + " metros");
         coordenadas.appendChild(liPrecision);
-		
-		//Si descomento lo siguiente no me funciona (puede ser mi ordenador)
-		
+
+        //Si descomento lo siguiente no funciona (puede ser mi ordenador)
+
         /*let liAltitud = document.createElement('li');
         liAltitud.append("Altitud: " + this.altitud + " metros");
         coordenadas.appendChild(liAltitud);
@@ -92,8 +103,6 @@ class GeoLocalizacion{
         var sensor = "&sensor=false"; 
         
         this.imagenMapa = url + centro + zoom + size + marcador + sensor + apiKey;
-        
-        ubicacion.innerHTML = "<h2>Mapa de su localización</h2><img src='"+ this.imagenMapa +"' alt='Mapa'></img>";
+        ubicacion.innerHTML = "<img src='" + this.imagenMapa + "' alt='Mapa'></img>";
     }
 }
-var posicion = new GeoLocalizacion();
