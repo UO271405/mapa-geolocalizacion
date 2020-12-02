@@ -13,6 +13,7 @@ h1{
 
 /*especificidad -> 100*/
 #mapa {
-    height: 1000px;
+    margin: auto;
+    height: 40em;
     width: 100%;
 }

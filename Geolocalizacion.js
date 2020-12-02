@@ -1,11 +1,15 @@
 var miMapa = new Object();
-function initMap(){
+
+function initMap(){  
     var centro = {lat: 43.3672702, lng: -5.8502461};
     var mapaGeoposicionado = new google.maps.Map(document.getElementById('mapa'),{
         zoom: 8,
         center:centro,
         mapTypeId: google.maps.MapTypeId.ROADMAP
     });
+    var trafficLayer = new google.maps.TrafficLayer();
+        trafficLayer.setMap(mapaGeoposicionado);
+    
     infoWindow = new google.maps.InfoWindow;
     if (navigator.geolocation) {
           navigator.geolocation.getCurrentPosition(function(position) {
@@ -13,6 +17,7 @@ function initMap(){
               lat: position.coords.latitude,
               lng: position.coords.longitude
             };
+
             infoWindow.setPosition(pos);
             infoWindow.setContent('Localización encontrada');
             infoWindow.open(mapaGeoposicionado);
@@ -21,10 +26,10 @@ function initMap(){
             handleLocationError(true, infoWindow, mapaGeoposicionado.getCenter());
           });
         } else {
-          // Browser doesn't support Geolocation
           handleLocationError(false, infoWindow, mapaGeoposicionado.getCenter());
         }
       }
+
       function handleLocationError(browserHasGeolocation, infoWindow, pos) {
         infoWindow.setPosition(pos);
         infoWindow.setContent(browserHasGeolocation ?
